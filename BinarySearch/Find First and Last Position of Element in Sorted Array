@@ -1,0 +1,33 @@
+from typing import List
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        left=0
+        right=len(nums)-1
+        left_index=self.findLeftindex(nums,target,left,right)
+        right_index=self.findRightindex(nums,target,left,right)
+        return [left_index,right_index]
+    def findLeftindex(self,nums:List[int],target:int,left:int,right:int) ->int:
+        final_index=-1
+        while left<=right:
+            mid=left+(right-left)//2
+            if nums[mid]==target:
+                final_index=mid
+                right=mid-1
+            elif nums[mid]<target:
+                left=mid+1
+            else:
+                right=mid-1
+        return final_index
+    def findRightindex(self,nums:List[int],target:int,left:int,right:int) ->int:
+        final_index=-1
+        while left<=right:
+            mid=left+(right-left)//2
+            if nums[mid]==target:
+                final_index=mid
+                left=mid+1
+            elif nums[mid]<target:
+                left=mid+1
+            else:
+                right=mid-1
+        return final_index
+                
