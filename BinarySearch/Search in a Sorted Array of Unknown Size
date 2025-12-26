@@ -1,0 +1,16 @@
+class Solution:
+    def search(self, reader, target: int) -> int:
+        left=0
+        right=1
+        while reader.get(right)<target:
+            left=right
+            right=2*right
+        while left<=right:
+            mid=left+(right-left)//2
+            if reader.get(mid)==target:
+                return mid
+            elif reader.get(mid)<target:
+                left=mid+1
+            else:
+                right=mid-1
+        return -1
